@@ -51,7 +51,7 @@ void SD_Init(SD_HandleTypeDef *hsd) {
 	uint8_t ocr[4], n;
 	//reset card
 	SD_Deselect(hsd);
-	for (int i = 0; i < 10; ++i) {
+	for (int i = 0; i < 12; ++i) {
 		SPI_TxByte(hsd, 0xff);
 	}
 	SD_Select(hsd);
@@ -205,6 +205,7 @@ int SD_Read_Block(SD_HandleTypeDef *hsd, uint8_t *datablock, uint32_t address) {
 
 		SD_Deselect(hsd);
 		SPI_RxByte(hsd);
+		SPI_RxByte(hsd);
 		return 1;
 	}
 
@@ -256,6 +257,7 @@ int SD_Write_Block(SD_HandleTypeDef *hsd, void *datablock, uint32_t address) {
 		while (SPI_RxByte(hsd) == 0)
 			;
 		SD_Deselect(hsd);
+		SPI_RxByte(hsd);
 		SPI_RxByte(hsd);
 		/* transmit 0x05 accepted */
 		if ((resp & 0x1F) == 0x05)
