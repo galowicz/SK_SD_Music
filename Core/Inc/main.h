@@ -32,11 +32,18 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "sd.h"
+#include "inttypes.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-
+typedef struct{
+	uint32_t address;
+	uint32_t length;
+	uint32_t samplerate;
+	uint8_t channels;
+	uint8_t bits_per_sample;
+}Sample_Type_Def;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/

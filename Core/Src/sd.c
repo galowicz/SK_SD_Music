@@ -173,7 +173,7 @@ size_t SD_Get_Size(SD_HandleTypeDef *hsd) {
  * @return true if operation was successful, false otherwise.
  */
 int SD_Read_Block(SD_HandleTypeDef *hsd, uint8_t *datablock, uint32_t address) {
-	//TODO
+	//DONE?
 	SD_Select(hsd);
 	if (SD_SendCmd(hsd,CMD17, address)) {
 		SD_Deselect(hsd);
