@@ -175,13 +175,13 @@ size_t SD_Get_Size(SD_HandleTypeDef *hsd) {
 int SD_Read_Block(SD_HandleTypeDef *hsd, uint8_t *datablock, uint32_t address) {
 	//DONE?
 	SD_Select(hsd);
-	if (SD_SendCmd(hsd,CMD17, address)) {
+	if (SD_SendCmd(hsd, CMD17, address)) {
 		SD_Deselect(hsd);
 		SPI_RxByte(hsd);
 		return 0;
 	} else {
 		uint8_t token;
-		uint16_t len=512;
+		uint16_t len = 512;
 		/* timeout 200ms */
 		timer1 = 200;
 
@@ -293,6 +293,8 @@ uint8_t SD_SendCmd(SD_HandleTypeDef *hsd, uint8_t cmd, uint32_t arg) {
 		crc = 0x95; /* CRC for CMD0(0) */
 	else if (cmd == CMD8)
 		crc = 0x87; /* CRC for CMD8(0x1AA) */
+//	else if (cmd == CMD17)
+//		crc = 0xff;
 	else
 		crc = 1;
 
